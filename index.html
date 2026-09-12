@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#f3eadc">
+  <meta name="theme-color" content="#3b0d16">
   <meta name="description" content="Jemputan Walimatulurus Fazilla & Aqib — 12 Disember 2026, Dewan Kilimu, Ranau.">
   <title>Fazilla & Aqib | 12.12.2026</title>
   <style>
@@ -48,36 +48,41 @@
       position:fixed;
       inset:0;
       z-index:50;
-      display:grid;
-      place-items:center;
-      padding:24px;
+      min-height:100dvh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:max(24px,env(safe-area-inset-top)) 24px max(24px,env(safe-area-inset-bottom));
       background:
-        radial-gradient(circle at 50% 18%,rgba(255,255,255,.96),transparent 32%),
-        radial-gradient(circle at 92% 88%,rgba(90,23,35,.08),transparent 30%),
-        linear-gradient(145deg,#f9f4eb 0%,#eee0c9 58%,#e5d2b4 100%);
+        radial-gradient(circle at 50% 12%,rgba(217,189,128,.16),transparent 30%),
+        radial-gradient(circle at 12% 86%,rgba(255,255,255,.06),transparent 28%),
+        linear-gradient(155deg,#2f0911 0%,#4a101d 48%,#66172c 100%);
       transition:opacity .9s ease,visibility .9s ease;
+      overflow:auto;
     }
     .opening:before,.opening:after{
       content:"";
       position:absolute;
-      width:320px;
-      height:320px;
-      border:1px solid rgba(173,135,72,.18);
+      width:340px;
+      height:340px;
+      border:1px solid rgba(217,189,128,.18);
       border-radius:50%;
+      pointer-events:none;
     }
-    .opening:before{left:-220px;top:8%}
-    .opening:after{right:-210px;bottom:4%}
+    .opening:before{left:-230px;top:4%}
+    .opening:after{right:-220px;bottom:1%}
     .opening.hide{opacity:0;visibility:hidden}
     .envelope{
       width:min(410px,92vw);
+      margin:auto;
       padding:48px 30px 42px;
       text-align:center;
-      border:1px solid rgba(173,135,72,.55);
-      background:rgba(255,252,246,.88);
+      border:1px solid rgba(217,189,128,.62);
+      background:rgba(255,252,246,.96);
       backdrop-filter:blur(18px);
       -webkit-backdrop-filter:blur(18px);
       border-radius:30px;
-      box-shadow:0 32px 90px rgba(61,43,19,.16);
+      box-shadow:0 34px 90px rgba(15,2,6,.34),0 0 0 1px rgba(255,255,255,.18);
       position:relative;
       overflow:hidden;
     }
@@ -111,7 +116,8 @@
       color:var(--gold);
     }
     h1,h2,h3,p{margin-top:0}
-    .opening p{color:var(--muted);line-height:1.8;margin-bottom:25px}
+    .opening p{color:var(--muted);line-height:1.8;margin:0 auto 25px;max-width:330px}
+    .opening .btn{margin-inline:auto}
 
     .btn{
       appearance:none;
@@ -459,6 +465,8 @@
 
     @media(max-width:600px){
       section.content{padding:82px 16px}
+      .opening{padding:max(18px,env(safe-area-inset-top)) 14px max(18px,env(safe-area-inset-bottom))}
+      .envelope{width:min(94vw,410px);padding:42px 24px 38px}
       .hero{padding:62px 18px 105px}
       .logo--opening{width:min(255px,74vw)}
       .logo--hero{width:min(295px,82vw);margin-bottom:24px}
