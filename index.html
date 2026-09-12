@@ -33,7 +33,7 @@
 
     .logo{display:block;max-width:100%;height:auto;margin-inline:auto}
     .logo--opening{width:min(255px,70vw);margin:16px auto 24px}
-    .logo--hero{width:min(410px,88vw);margin:0 auto;position:relative;z-index:2;filter:brightness(1.08) saturate(1.06) contrast(1.03) drop-shadow(0 0 8px rgba(255,232,168,.30)) drop-shadow(0 0 18px rgba(210,167,79,.18)) drop-shadow(0 12px 22px rgba(21,2,8,.24));animation:none}
+    .logo--hero{width:min(410px,88vw);margin:0 auto;position:relative;z-index:2;filter:brightness(0) saturate(100%) invert(94%) sepia(14%) saturate(520%) hue-rotate(334deg) brightness(104%) contrast(96%);animation:none;opacity:.98}
     .logo--closing{width:min(180px,48vw);margin-bottom:18px}
 
     .eyebrow{font:700 10px/1.4 var(--sans);letter-spacing:.30em;text-transform:uppercase;color:var(--gold)}
@@ -57,7 +57,7 @@
     .hero:before{left:-310px;top:7%}.hero:after{right:-310px;bottom:-2%}
     .hero-inner{max-width:720px;position:relative;z-index:1;width:100%}
     .hero-logo-wrap{position:relative;width:max-content;max-width:100%;margin:0 auto 10px}
-    .hero-logo-wrap:before{content:"";position:absolute;inset:15% 8% 13%;background:radial-gradient(ellipse,rgba(255,225,145,.14),rgba(116,31,51,.02) 48%,transparent 72%);filter:blur(24px);pointer-events:none}
+    .hero-logo-wrap:before{display:none}
     .hero-logo-wrap:after{display:none}
     .hero .eyebrow{color:var(--gold2)}
     .hero .intro{max-width:570px;margin:0 auto 30px;line-height:1.9;color:#f7eeea;font-size:clamp(16px,2.4vw,20px)}
@@ -140,7 +140,7 @@
     <main>
       <section class="hero" id="home">
         <div class="hero-inner">
-          <div class="hero-logo-wrap"><img src="assets/fa-logo-countdown-safe.png?v=safepng1" alt="Logo Fazilla dan Aqib" class="logo logo--hero"></div>
+          <div class="hero-logo-wrap"><img src="assets/fa-logo.webp?v=cream-countdown1" alt="Logo Fazilla dan Aqib" class="logo logo--hero"></div>
           <div class="eyebrow">Menghitung Hari</div>
           <div class="count hero-count" aria-label="Countdown ke majlis">
             <div><b id="d">00</b><span>HARI</span></div><div><b id="h">00</b><span>JAM</span></div><div><b id="m">00</b><span>MINIT</span></div><div><b id="s">00</b><span>SAAT</span></div>
