@@ -265,11 +265,20 @@
     .hero-count div{
       position:relative;
       overflow:hidden;
-      background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(248,238,219,.82));
       border:1px solid rgba(221,203,169,.72);
       border-radius:17px;
       padding:18px 5px 16px;
-      box-shadow:none;
+      transition:transform .25s ease,box-shadow .25s ease;
+    }
+    .hero-count div:nth-child(odd){
+      background:linear-gradient(180deg,#7a1c3a 0%,#5a1723 55%,#3b0d16 100%);
+      border-color:rgba(217,189,128,.34);
+      box-shadow:0 12px 28px rgba(90,23,35,.22),inset 0 1px 0 rgba(255,255,255,.08);
+    }
+    .hero-count div:nth-child(even){
+      background:linear-gradient(180deg,#fff8f8 0%,#f3dde2 55%,#e9c8d0 100%);
+      border-color:rgba(173,135,72,.34);
+      box-shadow:0 12px 28px rgba(90,23,35,.10),inset 0 1px 0 rgba(255,255,255,.70);
     }
     .hero-count div:before{
       content:"";
@@ -278,8 +287,12 @@
       height:1px;
       background:linear-gradient(90deg,transparent,var(--gold2),transparent);
     }
+    .hero-count div:nth-child(odd) b{color:#fff8f2}
+    .hero-count div:nth-child(even) b{color:#68152b}
+    .hero-count div:nth-child(odd) span{color:#f2e3bd}
+    .hero-count div:nth-child(even) span{color:#8e6d56}
     .hero-count b{font-size:clamp(27px,5vw,36px);font-weight:400;letter-spacing:.02em}
-    .hero-count span{margin-top:8px;display:block;color:#8b7c67}
+    .hero-count span{margin-top:8px;display:block}
     .actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;position:relative;z-index:1}
 
     .green{
