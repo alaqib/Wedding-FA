@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fazilla & Aqib | 12.12.2026</title>
+<style>
+:root{--cream:#fbf7ef;--ink:#26352d;--gold:#aa8950;--soft:#e9dfce}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Georgia,'Times New Roman',serif;background:var(--cream);color:var(--ink)}
+section{min-height:75vh;padding:70px 22px;display:flex;align-items:center;justify-content:center;text-align:center}
+.wrap{max-width:760px;width:100%}.hero{min-height:100vh;background:linear-gradient(#fbf7efdd,#fbf7efdd),radial-gradient(circle at top,#d8c39e 0,transparent 45%)}
+.monogram{width:105px;height:105px;border:1px solid var(--gold);border-radius:50%;margin:0 auto 25px;display:grid;place-items:center;font-size:40px;color:var(--gold)}
+.eyebrow{letter-spacing:.24em;text-transform:uppercase;font:12px Arial,sans-serif;color:var(--gold)}
+h1{font-size:clamp(46px,11vw,82px);font-weight:400;line-height:.95;margin:18px 0}h2{font-size:34px;font-weight:400;margin:10px}
+.amp{color:var(--gold);font-style:italic}.date{font:600 15px Arial,sans-serif;letter-spacing:.18em;margin:28px 0}
+.btn{display:inline-block;padding:13px 22px;border:1px solid var(--gold);border-radius:999px;color:var(--ink);text-decoration:none;font:13px Arial,sans-serif;margin:5px;background:#fff9}
+.card{background:#fff;padding:35px 22px;border:1px solid var(--soft);border-radius:24px;box-shadow:0 12px 40px #594d3720}
+.count{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:30px 0}.count b{font-size:28px;display:block}.count span{font:11px Arial,sans-serif;color:#756b5e}
+.names{line-height:1.8}.family{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:28px}.family div{padding:20px;border-top:1px solid var(--soft)}
+footer{padding:40px 20px;text-align:center;font:12px Arial,sans-serif;color:#786f62}
+@media(max-width:600px){.family{grid-template-columns:1fr}.count b{font-size:22px}section{padding:55px 18px}}
+</style>
+</head>
+<body>
+<section class="hero"><div class="wrap">
+<div class="monogram">FA</div><div class="eyebrow">Walimatulurus</div>
+<h1>Fazilla <span class="amp">&</span><br>Aqib</h1>
+<div class="date">12 · 12 · 2026</div>
+<p>Dengan penuh kesyukuran, kami menjemput anda hadir meraikan hari bahagia kami.</p>
+<a class="btn" href="#majlis">Buka Jemputan</a>
+</div></section>
+
+<section id="majlis"><div class="wrap card">
+<div class="eyebrow">Majlis Perkahwinan</div>
+<h2>Mohd Al Aqib bin Kiffli<br><span class="amp">&</span><br>Nur Fazilla binti Maapus</h2>
+<p>Sabtu, 12 Disember 2026<br><b>12:00 tengah hari</b><br>Dewan Kilimu, Ranau</p>
+<div class="count">
+<div><b id="d">0</b><span>HARI</span></div><div><b id="h">0</b><span>JAM</span></div>
+<div><b id="m">0</b><span>MINIT</span></div><div><b id="s">0</b><span>SAAT</span></div>
+</div>
+<a class="btn" href="https://www.google.com/maps/search/?api=1&query=Dewan+Kilimu+Ranau" target="_blank">Google Maps</a>
+</div></section>
+
+<section><div class="wrap">
+<div class="eyebrow">Dengan segala hormatnya menjemput</div>
+<div class="family">
+<div><h3>Keluarga Pengantin Lelaki</h3><p>Dg Arpiah bte Pg Ahmad<br>&<br>Kiffli bin Abd Sani</p></div>
+<div><h3>Keluarga Pengantin Perempuan</h3><p>Mineh Maidi<br>&<br>Mohamad Maapus bin Waidi</p></div>
+</div>
+<p style="margin-top:35px">Semoga dengan kehadiran dan doa restu para tetamu, majlis ini akan bertambah seri dan diberkati Allah SWT.</p>
+</div></section>
+
+<section><div class="wrap card"><div class="eyebrow">RSVP & Galeri</div>
+<h2>Akan dikemas kini</h2><p>Bahagian RSVP, nombor WhatsApp, atur cara dan gambar pasangan boleh dimasukkan apabila maklumat tersedia.</p>
+</div></section>
+<footer>FA · Fazilla & Aqib · 12.12.2026</footer>
+<script>
+const target=new Date('2026-12-12T12:00:00+08:00').getTime();
+setInterval(()=>{let x=Math.max(0,target-Date.now());d.textContent=Math.floor(x/86400000);h.textContent=Math.floor(x%86400000/3600000);m.textContent=Math.floor(x%3600000/60000);s.textContent=Math.floor(x%60000/1000)},1000);
+</script>
+</body></html>
