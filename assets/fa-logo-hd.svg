@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Fazilla &amp; Aqib Wedding Monogram</title>
+  <desc id="desc">Luxury gold FA monogram with floral branches, names and wedding date.</desc>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff0bd"/>
+      <stop offset="0.18" stop-color="#e9c978"/>
+      <stop offset="0.45" stop-color="#b98236"/>
+      <stop offset="0.68" stop-color="#f4dda0"/>
+      <stop offset="1" stop-color="#8e5f28"/>
+    </linearGradient>
+    <linearGradient id="goldSoft" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8e4ae"/>
+      <stop offset="1" stop-color="#b78646"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="7" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="9" stdDeviation="9" flood-color="#21050b" flood-opacity=".42"/>
+    </filter>
+  </defs>
+
+  <g fill="none" stroke="url(#gold)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".98" filter="url(#softShadow)">
+    <path d="M285 690 C185 610 165 465 210 305 C232 228 276 177 326 145"/>
+    <path d="M915 690 C1015 610 1035 465 990 305 C968 228 924 177 874 145"/>
+    <g stroke-width="6">
+      <path d="M237 570c-62-12-91-40-106-73 59-9 100 7 125 45"/><path d="M223 486c-55-25-73-58-77-92 59 5 94 30 111 71"/>
+      <path d="M231 399c-43-37-51-72-45-104 54 18 81 49 88 92"/><path d="M264 315c-31-45-29-78-18-105 48 26 69 57 66 98"/>
+      <path d="M300 243c-18-43-8-70 7-92 38 30 49 60 36 94"/>
+      <path d="M963 570c62-12 91-40 106-73-59-9-100 7-125 45"/><path d="M977 486c55-25 73-58 77-92-59 5-94 30-111 71"/>
+      <path d="M969 399c43-37 51-72 45-104-54 18-81 49-88 92"/><path d="M936 315c31-45 29-78 18-105-48 26-69 57-66 98"/>
+      <path d="M900 243c18-43 8-70-7-92-38 30-49 60-36 94"/>
+    </g>
+  </g>
+
+  <g filter="url(#softShadow)">
+    <text x="382" y="595" text-anchor="middle" fill="url(#gold)" font-family="Georgia, 'Times New Roman', serif" font-size="440" font-weight="500">F</text>
+    <text x="790" y="685" text-anchor="middle" fill="url(#gold)" font-family="Georgia, 'Times New Roman', serif" font-size="430" font-weight="500">A</text>
+    <path d="M455 515 C515 600 568 602 603 539 C636 479 710 490 712 551 C714 619 626 677 548 735 C477 787 414 799 350 764" fill="none" stroke="url(#gold)" stroke-width="13" stroke-linecap="round"/>
+    <path d="M599 544 C579 508 532 502 516 535 C496 577 548 613 599 655 C650 613 702 577 682 535 C666 502 619 508 599 544Z" fill="none" stroke="url(#gold)" stroke-width="11" transform="translate(0,-90) scale(.55) translate(490,440)"/>
+  </g>
+
+  <g filter="url(#softShadow)">
+    <text x="600" y="835" text-anchor="middle" fill="url(#goldSoft)" font-family="Georgia, 'Times New Roman', serif" font-size="76" letter-spacing="18">FAZILLA &amp; AQIB</text>
+    <line x1="230" y1="900" x2="500" y2="900" stroke="url(#gold)" stroke-width="5"/>
+    <line x1="700" y1="900" x2="970" y2="900" stroke="url(#gold)" stroke-width="5"/>
+    <path d="M600 930 C569 904 538 875 550 843 C562 812 602 823 600 853 C598 823 638 812 650 843 C662 875 631 904 600 930Z" fill="url(#gold)" transform="translate(0,15) scale(.62) translate(368,520)"/>
+    <text x="600" y="1030" text-anchor="middle" fill="url(#goldSoft)" font-family="Georgia, 'Times New Roman', serif" font-size="66" letter-spacing="12">12.12.2026</text>
+  </g>
+
+  <g fill="#fff0bd" filter="url(#glow)">
+    <circle cx="324" cy="164" r="4"/><circle cx="890" cy="220" r="4"/><circle cx="472" cy="310" r="4"/><circle cx="758" cy="400" r="4"/><circle cx="600" cy="786" r="3"/>
+  </g>
+</svg>
