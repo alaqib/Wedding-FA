@@ -26,7 +26,6 @@
   <meta name="twitter:description" content="Jemputan Walimatulurus Fazilla & Aqib — 12 Disember 2026, Dewan Kilimu, Ranau.">
   <meta name="twitter:image" content="https://alaqib.github.io/Wedding-FA/assets/whatsapp-preview-square.jpg?v=20260913c">
 
-  <link rel="preload" href="./assets/fa-logo.webp?v=opt1" as="image" type="image/webp">
   <style>
     html,body{margin:0;min-height:100%;background:#3b0d16;color:#f6f0e6;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
     #loader{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(circle at 50% 20%,#741f33 0,#3b0d16 62%,#25070d 100%);text-align:center;padding:24px;box-sizing:border-box}
@@ -38,7 +37,7 @@
   <script>
     (async()=>{
       try{
-        const response=await fetch('./wedding-site.html');
+        const response=await fetch('./wedding-site.html',{cache:'no-cache'});
         if(!response.ok) throw new Error('HTTP '+response.status);
         const html=await response.text();
 
@@ -86,14 +85,6 @@
         }
 
         let enhanced=html.replace('</style>',confettiCSS+'</style>');
-
-        // Performance: use one lightweight cached WebP logo everywhere instead of the 1.31 MB PNG.
-        enhanced=enhanced
-          .replaceAll('assets/7E485076-9F38-4524-95B2-FF7D4D3B3092.png?v=restore2','assets/fa-logo.webp?v=opt1')
-          .replaceAll('assets/7E485076-9F38-4524-95B2-FF7D4D3B3092.png?v=direct4','assets/fa-logo.webp?v=opt1')
-          .replaceAll('assets/fa-logo.webp?v=restore2','assets/fa-logo.webp?v=opt1')
-          .replace('preload="metadata"','preload="none"');
-
         enhanced=enhanced.replace('<section class="hero" id="home">','<section class="hero" id="home"><div class="gold-confetti" aria-hidden="true">'+confetti+'</div>');
 
         document.open();
