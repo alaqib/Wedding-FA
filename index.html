@@ -32,7 +32,7 @@
     button,a{-webkit-tap-highlight-color:transparent}
 
     .logo{display:block;max-width:100%;height:auto;margin-inline:auto}
-    .logo--opening{width:min(255px,70vw);margin:16px auto 24px}
+    .logo--opening{width:min(255px,70vw);margin:16px auto 24px;position:relative;z-index:2;filter:brightness(1.04) saturate(1.08) contrast(1.02) drop-shadow(0 0 5px rgba(173,135,72,.28)) drop-shadow(0 0 14px rgba(217,189,128,.22)) drop-shadow(0 10px 20px rgba(90,23,35,.10));animation:openingLogoGlow 4.2s ease-in-out infinite;will-change:filter}
     .logo--hero{display:block!important;width:100%!important;max-width:410px!important;height:auto!important;margin:0 auto!important;position:relative;z-index:2;opacity:1!important;visibility:visible!important;object-fit:contain;will-change:filter;filter:brightness(1.04) saturate(1.08) contrast(1.03) drop-shadow(0 0 5px rgba(255,244,214,.52)) drop-shadow(0 0 15px rgba(255,213,126,.34)) drop-shadow(0 0 30px rgba(211,142,55,.18)) drop-shadow(0 14px 28px rgba(35,3,12,.30))!important;animation:logoLuxeGlow 3.8s ease-in-out infinite!important}
     .logo--closing{width:min(180px,48vw);margin-bottom:18px}
 
@@ -68,6 +68,7 @@
     @keyframes logoLuxeGlow{0%,100%{filter:brightness(1.03) saturate(1.06) contrast(1.02) drop-shadow(0 0 5px rgba(255,244,214,.44)) drop-shadow(0 0 13px rgba(255,213,126,.28)) drop-shadow(0 0 24px rgba(211,142,55,.14)) drop-shadow(0 13px 27px rgba(35,3,12,.28))}50%{filter:brightness(1.10) saturate(1.14) contrast(1.04) drop-shadow(0 0 7px rgba(255,249,226,.68)) drop-shadow(0 0 21px rgba(255,218,132,.46)) drop-shadow(0 0 38px rgba(226,156,62,.25)) drop-shadow(0 15px 31px rgba(35,3,12,.34))}}
     @keyframes logoAura{0%,100%{opacity:.54;transform:scale(.965)}50%{opacity:.90;transform:scale(1.025)}}
     @keyframes logoShineSweep{0%,18%{left:-34%;opacity:0}28%{opacity:.15}43%{opacity:.62}58%{opacity:.16}70%,100%{left:112%;opacity:0}}
+    @keyframes openingLogoGlow{0%,100%{filter:brightness(1.02) saturate(1.05) contrast(1.01) drop-shadow(0 0 4px rgba(173,135,72,.20)) drop-shadow(0 0 10px rgba(217,189,128,.15)) drop-shadow(0 9px 18px rgba(90,23,35,.08))}50%{filter:brightness(1.10) saturate(1.12) contrast(1.03) drop-shadow(0 0 7px rgba(173,135,72,.38)) drop-shadow(0 0 18px rgba(217,189,128,.28)) drop-shadow(0 11px 22px rgba(90,23,35,.12))}}
 
     .count{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
     .hero-count{width:min(550px,100%);margin:20px auto 34px;padding:9px;gap:8px;border:1px solid rgba(217,189,128,.42);border-radius:24px;background:rgba(255,248,240,.10);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 20px 46px rgba(23,2,8,.18)}
@@ -245,7 +246,15 @@
       const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('visible')}),{threshold:.12});
       document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
-      document.getElementById('calendarBtn').addEventListener('click',()=>{const ics='BEGIN:VCALENDAR\r\nVERSION:2.0\r\nBEGIN:VEVENT\r\nDTSTART:20261212T040000Z\r\nDTEND:20261212T090000Z\r\nSUMMARY:Walimatulurus Fazilla & Aqib\r\nLOCATION:Dewan Kilimu, Ranau, Sabah\r\nEND:VEVENT\r\nEND:VCALENDAR';const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));a.download='Fazilla-Aqib-12-12-2026.ics';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)});
+      document.getElementById('calendarBtn').addEventListener('click',()=>{const ics='BEGIN:VCALENDAR\r\
+VERSION:2.0\r\
+BEGIN:VEVENT\r\
+DTSTART:20261212T040000Z\r\
+DTEND:20261212T090000Z\r\
+SUMMARY:Walimatulurus Fazilla & Aqib\r\
+LOCATION:Dewan Kilimu, Ranau, Sabah\r\
+END:VEVENT\r\
+END:VCALENDAR';const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));a.download='Fazilla-Aqib-12-12-2026.ics';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)});
 
       async function share(){const u=new URL(location.href);u.searchParams.delete('admin');u.hash='';const data={title:'Fazilla & Aqib | 12.12.2026',text:'Jemputan Walimatulurus Fazilla & Aqib — 12 Disember 2026, Dewan Kilimu, Ranau.',url:u.href};if(navigator.share){try{await navigator.share(data);return}catch(e){if(e.name==='AbortError')return}}try{await navigator.clipboard.writeText(u.href);const toast=document.getElementById('toast');toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1800)}catch(e){prompt('Salin pautan jemputan:',u.href)}}
       document.getElementById('shareBtn').addEventListener('click',share);document.getElementById('shareMini').addEventListener('click',share);
