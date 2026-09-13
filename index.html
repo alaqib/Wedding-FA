@@ -40,8 +40,55 @@
         const response=await fetch('./wedding-site.html',{cache:'no-cache'});
         if(!response.ok) throw new Error('HTTP '+response.status);
         const html=await response.text();
+
+        const confettiCSS=`
+          /* Falling gold confetti — inspired by elegant red wedding pages */
+          .hero>.gold-confetti{position:absolute;inset:-12vh 0 0;overflow:hidden;pointer-events:none;z-index:4;contain:layout paint;}
+          .gold-confetti-piece{position:absolute;left:var(--x);top:-10vh;width:var(--w);height:var(--h);border-radius:1px;background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:0 0 5px rgba(255,218,112,.22);opacity:0;will-change:transform,opacity;transform-origin:center;animation:faGoldFall var(--dur) linear var(--delay) infinite;}
+          .gold-confetti-piece:nth-child(4n){border-radius:999px;}
+          .gold-confetti-piece:nth-child(5n){box-shadow:0 0 8px rgba(255,235,175,.34);}
+          .gold-confetti-piece:nth-child(7n){filter:brightness(1.14);}
+          @keyframes faGoldFall{
+            0%{transform:translate3d(0,-12vh,0) rotateX(0deg) rotateZ(0deg);opacity:0;}
+            7%{opacity:var(--a);}
+            28%{transform:translate3d(var(--d1),32vh,0) rotateX(120deg) rotateZ(135deg);opacity:var(--a);}
+            54%{transform:translate3d(var(--d2),66vh,0) rotateX(250deg) rotateZ(290deg);opacity:var(--a);}
+            80%{transform:translate3d(var(--d3),98vh,0) rotateX(390deg) rotateZ(455deg);opacity:calc(var(--a) * .92);}
+            100%{transform:translate3d(var(--d4),128vh,0) rotateX(520deg) rotateZ(var(--spin));opacity:0;}
+          }
+          @media(max-width:600px){
+            .gold-confetti-piece:nth-child(n+35){display:none;}
+            .gold-confetti-piece{box-shadow:0 0 4px rgba(255,218,112,.18);}
+          }
+          @media(prefers-reduced-motion:reduce){.hero>.gold-confetti{display:none!important;}}
+        `;
+
+        const tones=[
+          ['#fff3bf','#d9a128'],
+          ['#ffd55f','#b97813'],
+          ['#f8c943','#e7a91c'],
+          ['#fff0cf','#d6ad55'],
+          ['#f4d06f','#c78d22']
+        ];
+        let confetti='';
+        for(let i=0;i<52;i++){
+          const t=tones[Math.floor(Math.random()*tones.length)];
+          const x=(Math.random()*100).toFixed(2);
+          const w=(3.4+Math.random()*4.4).toFixed(1);
+          const h=(7+Math.random()*9).toFixed(1);
+          const dur=(7.4+Math.random()*6.2).toFixed(2);
+          const delay=(-Math.random()*13).toFixed(2);
+          const a=(.48+Math.random()*.42).toFixed(2);
+          const sway=()=>((Math.random()-.5)*74).toFixed(0)+'px';
+          const spin=(520+Math.random()*520).toFixed(0)+'deg';
+          confetti+=`<i class="gold-confetti-piece" style="--x:${x}%;--w:${w}px;--h:${h}px;--dur:${dur}s;--delay:${delay}s;--a:${a};--d1:${sway()};--d2:${sway()};--d3:${sway()};--d4:${sway()};--spin:${spin};--c1:${t[0]};--c2:${t[1]}"></i>`;
+        }
+
+        let enhanced=html.replace('</style>',confettiCSS+'</style>');
+        enhanced=enhanced.replace('<section class="hero" id="home">','<section class="hero" id="home"><div class="gold-confetti" aria-hidden="true">'+confetti+'</div>');
+
         document.open();
-        document.write(html);
+        document.write(enhanced);
         document.close();
       }catch(error){
         document.getElementById('loader').innerHTML='<div>Jemputan tidak dapat dimuatkan.<br><small>Sila refresh halaman ini.</small></div>';
