@@ -33,7 +33,7 @@
 
     .logo{display:block;max-width:100%;height:auto;margin-inline:auto}
     .logo--opening{width:min(255px,70vw);margin:16px auto 24px}
-    .logo--hero{display:block!important;width:100%!important;max-width:410px!important;height:auto!important;margin:0 auto!important;position:relative;z-index:2;filter:drop-shadow(0 0 4px rgba(255,240,205,.34)) drop-shadow(0 0 13px rgba(242,205,128,.20)) drop-shadow(0 12px 24px rgba(28,3,10,.24))!important;animation:logoGlow 3.4s ease-in-out infinite!important;opacity:1!important;visibility:visible!important;transform:none!important;object-fit:contain;will-change:filter}
+    .logo--hero{display:block!important;width:100%!important;max-width:410px!important;height:auto!important;margin:0 auto!important;position:relative;z-index:2;opacity:1!important;visibility:visible!important;object-fit:contain;will-change:filter;filter:brightness(1.04) saturate(1.08) contrast(1.03) drop-shadow(0 0 5px rgba(255,244,214,.52)) drop-shadow(0 0 15px rgba(255,213,126,.34)) drop-shadow(0 0 30px rgba(211,142,55,.18)) drop-shadow(0 14px 28px rgba(35,3,12,.30))!important;animation:logoLuxeGlow 3.8s ease-in-out infinite!important}
     .logo--closing{width:min(180px,48vw);margin-bottom:18px}
 
     .eyebrow{font:700 10px/1.4 var(--sans);letter-spacing:.30em;text-transform:uppercase;color:var(--gold)}
@@ -56,18 +56,18 @@
     .hero:before,.hero:after{content:"";position:absolute;width:440px;height:440px;border:1px solid rgba(217,189,128,.16);border-radius:50%;pointer-events:none}
     .hero:before{left:-310px;top:7%}.hero:after{right:-310px;bottom:-2%}
     .hero-inner{max-width:720px;position:relative;z-index:1;width:100%}
-    .hero-logo-wrap{position:relative;display:block;width:min(520px,92vw);max-width:92vw;margin:0 auto 10px;overflow:visible;text-align:center;isolation:isolate}
-    .hero-logo-wrap:before{content:"";display:block;position:absolute;z-index:1;inset:7% 3% 4%;border-radius:50%;pointer-events:none;background:radial-gradient(ellipse at center,rgba(255,233,176,.18) 0%,rgba(217,189,128,.09) 38%,rgba(217,189,128,0) 72%);animation:logoHalo 3.4s ease-in-out infinite}
-    .hero-logo-wrap:after{content:"✦";display:block;position:absolute;z-index:3;right:9%;top:16%;pointer-events:none;color:#fff0c7;font-size:17px;line-height:1;text-shadow:0 0 8px rgba(255,237,188,.78),0 0 18px rgba(217,189,128,.46);opacity:0;animation:logoSpark 5.2s ease-in-out infinite}
-    .hero .eyebrow{color:var(--gold2)}
+    .hero-logo-wrap{position:relative;display:block;width:min(520px,92vw);max-width:92vw;margin:0 auto 10px;overflow:hidden;text-align:center;isolation:isolate;border-radius:42%}
+    .hero-logo-wrap:before{content:"";display:block;position:absolute;z-index:1;inset:3% -2% 1%;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 50% 42%,rgba(255,246,218,.20) 0 5%,rgba(255,221,150,.12) 22%,rgba(217,166,72,.08) 43%,transparent 72%),radial-gradient(circle at 20% 27%,rgba(255,246,218,.88) 0 1.1px,rgba(255,218,128,.42) 1.8px,transparent 4px),radial-gradient(circle at 80% 35%,rgba(255,246,218,.78) 0 1px,rgba(255,218,128,.36) 1.7px,transparent 3.6px),radial-gradient(circle at 31% 73%,rgba(255,238,194,.70) 0 1px,transparent 3.4px),radial-gradient(circle at 72% 70%,rgba(255,238,194,.64) 0 1px,transparent 3.2px);filter:blur(.15px);opacity:.72;animation:logoAura 3.8s ease-in-out infinite}
+    .hero-logo-wrap:after{content:"";display:block;position:absolute;z-index:3;top:5%;bottom:5%;left:-34%;width:22%;pointer-events:none;border-radius:999px;background:linear-gradient(90deg,transparent 0%,rgba(255,241,199,.06) 24%,rgba(255,252,232,.46) 50%,rgba(255,219,132,.18) 68%,transparent 100%);filter:blur(8px);opacity:0;transform:skewX(-13deg);animation:logoShineSweep 5.6s cubic-bezier(.35,.06,.25,1) infinite}
+    .hero .eyebrow{color:var(--gold2);text-shadow:0 0 12px rgba(217,189,128,.16)}
     .hero .intro{max-width:570px;margin:0 auto 30px;line-height:1.9;color:#f7eeea;font-size:clamp(16px,2.4vw,20px)}
     .hero .btn{color:#fff8f2;border-color:rgba(217,189,128,.68);background:rgba(255,255,255,.04)}
     .hero .btn:hover{background:#fff8f2;color:var(--burgundy)}
     .scrollhint{margin-top:44px;font:700 9px/1 var(--sans);letter-spacing:.24em;color:#dcc69d;animation:float 1.9s ease-in-out infinite}
     @keyframes float{50%{transform:translateY(7px)}}
-    @keyframes logoGlow{0%,100%{filter:drop-shadow(0 0 4px rgba(255,240,205,.30)) drop-shadow(0 0 11px rgba(242,205,128,.17)) drop-shadow(0 12px 24px rgba(28,3,10,.22))}50%{filter:drop-shadow(0 0 7px rgba(255,243,214,.48)) drop-shadow(0 0 19px rgba(242,205,128,.30)) drop-shadow(0 14px 28px rgba(28,3,10,.26))}}
-    @keyframes logoHalo{0%,100%{opacity:.48;transform:scale(.96)}50%{opacity:.88;transform:scale(1.03)}}
-    @keyframes logoSpark{0%,56%,100%{opacity:0;transform:scale(.55) rotate(0deg)}64%{opacity:.95;transform:scale(1.18) rotate(22deg)}72%{opacity:0;transform:scale(.72) rotate(46deg)}}
+    @keyframes logoLuxeGlow{0%,100%{filter:brightness(1.03) saturate(1.06) contrast(1.02) drop-shadow(0 0 5px rgba(255,244,214,.44)) drop-shadow(0 0 13px rgba(255,213,126,.28)) drop-shadow(0 0 24px rgba(211,142,55,.14)) drop-shadow(0 13px 27px rgba(35,3,12,.28))}50%{filter:brightness(1.10) saturate(1.14) contrast(1.04) drop-shadow(0 0 7px rgba(255,249,226,.68)) drop-shadow(0 0 21px rgba(255,218,132,.46)) drop-shadow(0 0 38px rgba(226,156,62,.25)) drop-shadow(0 15px 31px rgba(35,3,12,.34))}}
+    @keyframes logoAura{0%,100%{opacity:.54;transform:scale(.965)}50%{opacity:.90;transform:scale(1.025)}}
+    @keyframes logoShineSweep{0%,18%{left:-34%;opacity:0}28%{opacity:.15}43%{opacity:.62}58%{opacity:.16}70%,100%{left:112%;opacity:0}}
 
     .count{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
     .hero-count{width:min(550px,100%);margin:20px auto 34px;padding:9px;gap:8px;border:1px solid rgba(217,189,128,.42);border-radius:24px;background:rgba(255,248,240,.10);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 20px 46px rgba(23,2,8,.18)}
