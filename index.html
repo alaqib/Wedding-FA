@@ -33,7 +33,7 @@
 
     .logo{display:block;max-width:100%;height:auto;margin-inline:auto}
     .logo--opening{width:min(255px,70vw);margin:16px auto 24px}
-    .logo--hero{width:min(410px,88vw);height:auto;margin:0 auto;position:relative;z-index:2;filter:none;animation:none;opacity:1;object-fit:contain}
+    .logo--hero{display:block!important;width:100%!important;max-width:410px!important;height:auto!important;margin:0 auto!important;position:relative;z-index:2;filter:none!important;animation:none!important;opacity:1!important;visibility:visible!important;transform:none!important;object-fit:contain}
     .logo--closing{width:min(180px,48vw);margin-bottom:18px}
 
     .eyebrow{font:700 10px/1.4 var(--sans);letter-spacing:.30em;text-transform:uppercase;color:var(--gold)}
@@ -56,7 +56,7 @@
     .hero:before,.hero:after{content:"";position:absolute;width:440px;height:440px;border:1px solid rgba(217,189,128,.16);border-radius:50%;pointer-events:none}
     .hero:before{left:-310px;top:7%}.hero:after{right:-310px;bottom:-2%}
     .hero-inner{max-width:720px;position:relative;z-index:1;width:100%}
-    .hero-logo-wrap{position:relative;width:max-content;max-width:100%;margin:0 auto 10px}
+    .hero-logo-wrap{position:relative;display:block;width:min(520px,92vw);max-width:92vw;margin:0 auto 10px;overflow:visible;text-align:center}
     .hero-logo-wrap:before{display:none}
     .hero-logo-wrap:after{display:none}
     .hero .eyebrow{color:var(--gold2)}
@@ -114,7 +114,7 @@
     .toast{position:fixed;z-index:60;left:50%;bottom:88px;transform:translate(-50%,20px);background:rgba(90,23,35,.96);color:white;padding:12px 18px;border-radius:999px;font:700 11px/1 var(--sans);opacity:0;pointer-events:none;transition:.3s;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
 
     @media(max-width:600px){
-      section.content{padding:82px 16px}.opening{padding:max(18px,env(safe-area-inset-top)) 14px max(18px,env(safe-area-inset-bottom))}.envelope{width:min(94vw,410px);padding:38px 22px 36px}.hero{padding:48px 16px 105px}.logo--hero{width:min(390px,94vw)}.logo--opening{width:min(245px,68vw)}.logo--closing{width:min(150px,52vw)}.hero-count{gap:6px;padding:7px;border-radius:20px}.hero-count div{padding:15px 3px 14px;border-radius:14px}.hero-count b{font-size:24px}.hero-count span{font-size:8px;letter-spacing:.08em}.card{padding:38px 18px}.details,.families{grid-template-columns:1fr}.event{grid-template-columns:88px 1fr;gap:12px;padding:13px 12px}.event time{font-size:10px}.event h3{font-size:16px}.green:before,.rsvp-section:before{inset:12px;border-radius:24px}.rsvp-frame{height:790px}.admin-head{align-items:stretch;flex-direction:column}.admin-frame{height:1320px}.floatbar{bottom:max(12px,env(safe-area-inset-bottom));padding:6px;gap:2px}.floatbar a,.floatbar button{width:40px;height:40px}.closing{padding:92px 18px 132px}
+      section.content{padding:82px 16px}.opening{padding:max(18px,env(safe-area-inset-top)) 14px max(18px,env(safe-area-inset-bottom))}.envelope{width:min(94vw,410px);padding:38px 22px 36px}.hero{padding:48px 16px 105px}.hero-logo-wrap{width:min(520px,94vw);max-width:94vw}.logo--hero{width:100%!important;max-width:390px!important}.logo--opening{width:min(245px,68vw)}.logo--closing{width:min(150px,52vw)}.hero-count{gap:6px;padding:7px;border-radius:20px}.hero-count div{padding:15px 3px 14px;border-radius:14px}.hero-count b{font-size:24px}.hero-count span{font-size:8px;letter-spacing:.08em}.card{padding:38px 18px}.details,.families{grid-template-columns:1fr}.event{grid-template-columns:88px 1fr;gap:12px;padding:13px 12px}.event time{font-size:10px}.event h3{font-size:16px}.green:before,.rsvp-section:before{inset:12px;border-radius:24px}.rsvp-frame{height:790px}.admin-head{align-items:stretch;flex-direction:column}.admin-frame{height:1320px}.floatbar{bottom:max(12px,env(safe-area-inset-bottom));padding:6px;gap:2px}.floatbar a,.floatbar button{width:40px;height:40px}.closing{padding:92px 18px 132px}
     }
     @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal{opacity:1;transform:none;filter:none}.hero-logo-wrap:after{display:none!important}}
   </style>
@@ -140,7 +140,7 @@
     <main>
       <section class="hero" id="home">
         <div class="hero-inner">
-          <div class="hero-logo-wrap"><img src="assets/fa-logo-countdown-cream.png?v=cream-solid2" alt="Logo Fazilla dan Aqib" class="logo logo--hero"></div>
+          <div class="hero-logo-wrap"><img src="assets/fa-logo-cream-direct.png?v=direct4" alt="Logo Fazilla dan Aqib" width="520" height="486" loading="eager" decoding="sync" class="logo logo--hero" onerror="this.onerror=null;this.src='assets/fa-logo.webp?v=restore2';"></div>
           <div class="eyebrow">Menghitung Hari</div>
           <div class="count hero-count" aria-label="Countdown ke majlis">
             <div><b id="d">00</b><span>HARI</span></div><div><b id="h">00</b><span>JAM</span></div><div><b id="m">00</b><span>MINIT</span></div><div><b id="s">00</b><span>SAAT</span></div>
