@@ -29,18 +29,91 @@
 
   <style>
     html,body{margin:0;min-height:100%;background:#3b0d16;color:#f6f0e6;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+    body.intro-lock{overflow:hidden}
     #loader{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(circle at 50% 20%,#741f33 0,#3b0d16 62%,#25070d 100%);text-align:center;padding:24px;box-sizing:border-box}
     #loader div{opacity:.82;letter-spacing:.08em;font-size:13px}
+
+    /* 9:16 cinematic intro */
+    #videoIntro{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at 50% 34%,#5c1728 0,#2c0811 66%,#170308 100%);display:grid;place-items:center;overflow:hidden;opacity:1;visibility:visible;transition:opacity .65s ease,visibility .65s ease}
+    #videoIntro.hide{opacity:0;visibility:hidden;pointer-events:none}
+    #videoIntro video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#21070d}
+    #videoIntro:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(14,2,6,.12),transparent 22%,transparent 76%,rgba(14,2,6,.28));box-shadow:inset 0 0 80px rgba(15,2,7,.20)}
+    .intro-control{position:absolute;z-index:3;appearance:none;border:1px solid rgba(242,227,189,.55);background:rgba(31,5,12,.38);color:#fff8ed;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:999px;font:600 11px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;letter-spacing:.08em;padding:11px 14px;cursor:pointer;box-shadow:0 8px 28px rgba(0,0,0,.18)}
+    #skipIntro{top:max(18px,env(safe-area-inset-top));right:max(16px,env(safe-area-inset-right))}
+    #introSound{left:max(16px,env(safe-area-inset-left));bottom:max(20px,env(safe-area-inset-bottom))}
+    #playIntro{display:none;left:50%;top:50%;transform:translate(-50%,-50%);padding:14px 18px;font-size:12px;background:rgba(66,13,27,.78)}
+    #playIntro.show{display:block}
+    .intro-mark{position:absolute;z-index:2;left:50%;bottom:max(22px,env(safe-area-inset-bottom));transform:translateX(-50%);font:600 9px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;letter-spacing:.22em;color:rgba(255,244,218,.72);white-space:nowrap;text-shadow:0 2px 14px rgba(0,0,0,.35);pointer-events:none}
+    @media (min-aspect-ratio:3/4){
+      #videoIntro video{object-fit:contain}
+      #videoIntro:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,rgba(125,35,57,.28),transparent 42%);pointer-events:none}
+    }
+    @media (prefers-reduced-motion:reduce){#videoIntro{display:none!important}}
   </style>
 </head>
-<body>
+<body class="intro-lock">
   <div id="loader"><div>FAZILLA &amp; AQIB<br><small>Memuatkan jemputan…</small></div></div>
+
+  <div id="videoIntro" aria-label="Intro jemputan Fazilla dan Aqib">
+    <video id="introVideo" autoplay muted playsinline preload="auto">
+      <source src="./assets/gemini_generated_video_7B5DA9F3.mp4" type="video/mp4">
+    </video>
+    <button class="intro-control" id="skipIntro" type="button">LANGKAU</button>
+    <button class="intro-control" id="introSound" type="button">🔇 BUNYI</button>
+    <button class="intro-control" id="playIntro" type="button">▶ MAIN INTRO</button>
+    <div class="intro-mark">FAZILLA &amp; AQIB · 12.12.2026</div>
+  </div>
+
   <script>
     (async()=>{
-      try{
-        const response=await fetch('./wedding-site.html',{cache:'no-cache'});
+      const intro=document.getElementById('videoIntro');
+      const video=document.getElementById('introVideo');
+      const skip=document.getElementById('skipIntro');
+      const sound=document.getElementById('introSound');
+      const playButton=document.getElementById('playIntro');
+      let finished=false;
+
+      const sitePromise=fetch('./wedding-site.html',{cache:'no-cache'}).then(response=>{
         if(!response.ok) throw new Error('HTTP '+response.status);
-        const html=await response.text();
+        return response.text();
+      });
+
+      const finishIntro=()=>{
+        if(finished) return;
+        finished=true;
+        video.pause();
+        intro.classList.add('hide');
+        document.body.classList.remove('intro-lock');
+        setTimeout(()=>intro.remove(),700);
+      };
+
+      skip.addEventListener('click',finishIntro,{once:true});
+      video.addEventListener('ended',finishIntro,{once:true});
+      video.addEventListener('error',finishIntro,{once:true});
+
+      sound.addEventListener('click',()=>{
+        video.muted=!video.muted;
+        sound.textContent=video.muted?'🔇 BUNYI':'🔊 SENYAP';
+        if(video.paused) video.play().catch(()=>{});
+      });
+
+      playButton.addEventListener('click',()=>{
+        playButton.classList.remove('show');
+        video.play().catch(()=>playButton.classList.add('show'));
+      });
+
+      if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+        finishIntro();
+      }else{
+        video.play().catch(()=>playButton.classList.add('show'));
+      }
+
+      // Safety fallback in case a mobile browser stalls the video.
+      setTimeout(()=>{ if(!finished) finishIntro(); },14000);
+
+      try{
+        const html=await sitePromise;
+        while(!finished){ await new Promise(resolve=>setTimeout(resolve,120)); }
 
         const confettiCSS=`
           /* Falling gold confetti — inspired by elegant red wedding pages */
@@ -92,7 +165,9 @@
         document.write(enhanced);
         document.close();
       }catch(error){
-        document.getElementById('loader').innerHTML='<div>Jemputan tidak dapat dimuatkan.<br><small>Sila refresh halaman ini.</small></div>';
+        finishIntro();
+        const loader=document.getElementById('loader');
+        if(loader) loader.innerHTML='<div>Jemputan tidak dapat dimuatkan.<br><small>Sila refresh halaman ini.</small></div>';
         console.error(error);
       }
     })();
