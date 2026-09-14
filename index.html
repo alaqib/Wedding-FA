@@ -160,6 +160,7 @@
 
         let enhanced=html.replace('</style>',confettiCSS+'</style>');
         enhanced=enhanced.replace('<section class="hero" id="home">','<section class="hero" id="home"><div class="gold-confetti" aria-hidden="true">'+confetti+'</div>');
+        enhanced=enhanced.replace('<div class="family"><h3>Keluarga Pengantin Perempuan</h3><p>Mineh Maidi<br><span class="amp">&amp;</span><br>Mohamad Maapus bin Waidi</p></div>','<div class="family"><h3>Keluarga Pengantin Perempuan</h3><p>Mohamad Maapus bin Waidi<br><span class="amp">&amp;</span><br>Mineh Maidi</p></div>');
 
         document.open();
         document.write(enhanced);
