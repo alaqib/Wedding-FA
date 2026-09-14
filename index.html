@@ -130,9 +130,15 @@
             80%{transform:translate3d(var(--d3),98vh,0) rotateX(390deg) rotateZ(455deg);opacity:calc(var(--a) * .92);}
             100%{transform:translate3d(var(--d4),128vh,0) rotateX(520deg) rotateZ(var(--spin));opacity:0;}
           }
+          .wishes-wall{color:#fff8f2;background:radial-gradient(circle at 50% 0,rgba(217,189,128,.12),transparent 32%),linear-gradient(150deg,#310710 0%,#501020 52%,#701a34 100%);overflow:hidden;}
+          .wishes-wall:before{content:"";position:absolute;inset:18px;border:1px solid rgba(217,189,128,.10);border-radius:30px;pointer-events:none;}
+          .wishes-frame-wrap{position:relative;z-index:1;width:min(900px,100%);margin:auto;border:1px solid rgba(217,189,128,.24);border-radius:30px;overflow:hidden;background:rgba(255,255,255,.025);box-shadow:0 28px 70px rgba(20,2,7,.22);}
+          .wishes-frame{display:block;width:100%;height:680px;border:0;background:transparent;}
           @media(max-width:600px){
             .gold-confetti-piece:nth-child(n+35){display:none;}
             .gold-confetti-piece{box-shadow:0 0 4px rgba(255,218,112,.18);}
+            .wishes-frame{height:620px;}
+            .wishes-wall:before{inset:12px;border-radius:24px;}
           }
           @media(prefers-reduced-motion:reduce){.hero>.gold-confetti{display:none!important;}}
         `;
@@ -162,6 +168,8 @@
         enhanced=enhanced.replace('<section class="hero" id="home">','<section class="hero" id="home"><div class="gold-confetti" aria-hidden="true">'+confetti+'</div>');
         enhanced=enhanced.replace('<div class="family"><h3>Keluarga Pengantin Lelaki</h3><p>Dg Arpiah bte Pg Ahmad<br><span class="amp">&amp;</span><br>Kiffli bin Abd Sani</p></div>','<div class="family"><h3>Keluarga Pengantin Lelaki</h3><p>Dg Arpiah bte Pg Ahmad<br>Mohamed Mohammad Bin Ali<br><span class="amp">&amp;</span><br>Kiffli bin Abd Sani</p></div>');
         enhanced=enhanced.replace('<div class="family"><h3>Keluarga Pengantin Perempuan</h3><p>Mineh Maidi<br><span class="amp">&amp;</span><br>Mohamad Maapus bin Waidi</p></div>','<div class="family"><h3>Keluarga Pengantin Perempuan</h3><p>Mohamad Maapus bin Waidi<br><span class="amp">&amp;</span><br>Mineh Maidi</p></div>');
+        const wishesSection='<section class="content wishes-wall" id="ucapan"><div class="wrap reveal"><div class="wishes-frame-wrap"><iframe class="wishes-frame" title="Ucapan dan doa untuk Fazilla dan Aqib" loading="lazy" src="https://fa-wedding-rsvp-2xm9j8.v2.appdeploy.ai/?wishes=1&amp;embed=1"></iframe></div></div></section>';
+        enhanced=enhanced.replace('<section class="closing">',wishesSection+'<section class="closing">');
 
         document.open();
         document.write(enhanced);
