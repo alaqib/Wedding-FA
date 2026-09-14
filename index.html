@@ -133,10 +133,28 @@
           .wishes-wall:before{content:"";position:absolute;inset:18px;border:1px solid rgba(217,189,128,.10);border-radius:30px;pointer-events:none;}
           .wishes-frame-wrap{position:relative;z-index:1;width:min(900px,100%);margin:auto;border:1px solid rgba(217,189,128,.24);border-radius:30px;overflow:hidden;background:rgba(255,255,255,.025);box-shadow:0 18px 44px rgba(20,2,7,.18);}
           .wishes-frame{display:block;width:100%;height:420px;border:0;background:transparent;}
+          .gift-actions{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;}
+          .hero .gift-trigger{background:linear-gradient(135deg,rgba(217,189,128,.16),rgba(255,255,255,.05));border-color:rgba(242,227,189,.72);}
+          .gift-modal{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;}
+          .gift-modal.show{display:flex;}
+          .gift-backdrop{position:absolute;inset:0;background:rgba(22,3,9,.72);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);}
+          .gift-card{position:relative;z-index:1;width:min(460px,94vw);max-height:88dvh;overflow:auto;padding:30px 24px 26px;text-align:center;border:1px solid rgba(217,189,128,.55);border-radius:30px;background:linear-gradient(165deg,#fffdf8 0%,#f8eee2 100%);box-shadow:0 28px 80px rgba(16,2,6,.42);color:#5a1723;}
+          .gift-close{position:absolute;top:12px;right:12px;width:38px;height:38px;border:0;border-radius:50%;background:rgba(90,23,35,.08);color:#5a1723;font:400 25px/1 sans-serif;cursor:pointer;}
+          .gift-kicker{margin:2px 0 8px;font:700 10px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;letter-spacing:.25em;text-transform:uppercase;color:#ad8748;}
+          .gift-title{margin:0 0 14px;font:400 clamp(30px,7vw,42px)/1.05 "Iowan Old Style","Baskerville","Times New Roman",Georgia,serif;color:#5a1723;}
+          .gift-copy{max-width:360px;margin:0 auto 12px;color:#6f5f59;font:400 15px/1.75 "Iowan Old Style","Baskerville","Times New Roman",Georgia,serif;}
+          .gift-copy.small{font-size:14px;color:#8a746d;}
+          .gift-qr-wrap{width:min(310px,86vw);margin:20px auto 0;padding:10px;border:1px solid rgba(173,135,72,.28);border-radius:22px;background:#fff;box-shadow:0 12px 30px rgba(90,23,35,.10);}
+          .gift-qr{display:block;width:100%;height:auto;border-radius:14px;}
+          body.gift-open{overflow:hidden!important;}
           @media(max-width:600px){
             .gold-confetti-piece{box-shadow:none;}
             .wishes-frame{height:390px;}
             .wishes-wall:before{inset:12px;border-radius:24px;}
+            .gift-actions{gap:8px;}
+            .gift-card{padding:28px 18px 22px;border-radius:24px;}
+            .gift-copy{font-size:14px;line-height:1.65;}
+            .gift-qr-wrap{width:min(290px,84vw);}
             .reveal{filter:none!important;transform:translateY(18px)!important;}
             .reveal.visible{transform:translateY(0)!important;}
             .floatbar{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:rgba(255,253,247,.96)!important;}
@@ -173,10 +191,14 @@
         enhanced=enhanced.replaceAll('assets/7E485076-9F38-4524-95B2-FF7D4D3B3092.png?v=direct4','assets/7E485076-9F38-4524-95B2-FF7D4D3B3092.png?v=fa-logo');
         enhanced=enhanced.replace('decoding="sync"','decoding="async"');
         enhanced=enhanced.replace('<section class="hero" id="home">','<section class="hero" id="home"><div class="gold-confetti" aria-hidden="true">'+confetti+'</div>');
+        enhanced=enhanced.replace('<a class="btn" href="#majlis">Lihat Jemputan ↓</a>','<div class="gift-actions"><a class="btn" href="#majlis">Lihat Jemputan ↓</a><button class="btn gift-trigger" id="giftBtn" type="button">🎁 Hadiah</button></div>');
         enhanced=enhanced.replace('<div class="family"><h3>Keluarga Pengantin Lelaki</h3><p>Dg Arpiah bte Pg Ahmad<br><span class="amp">&amp;</span><br>Kiffli bin Abd Sani</p></div>','<div class="family"><h3>Keluarga Pengantin Lelaki</h3><p>Dg Arpiah bte Pg Ahmad<br>Mohamed Mohammad Bin Ali<br><span class="amp">&amp;</span><br>Kiffli bin Abd Sani</p></div>');
         enhanced=enhanced.replace('<div class="family"><h3>Keluarga Pengantin Perempuan</h3><p>Mineh Maidi<br><span class="amp">&amp;</span><br>Mohamad Maapus bin Waidi</p></div>','<div class="family"><h3>Keluarga Pengantin Perempuan</h3><p>Mohamad Maapus bin Waidi<br><span class="amp">&amp;</span><br>Mineh Maidi</p></div>');
         const wishesSection='<section class="content wishes-wall" id="ucapan"><div class="wrap reveal"><div class="wishes-frame-wrap"><iframe class="wishes-frame" title="Ucapan dan doa untuk Fazilla dan Aqib" loading="lazy" src="https://fa-wedding-rsvp-2xm9j8.v2.appdeploy.ai/?wishes=1&amp;embed=1"></iframe></div></div></section>';
         enhanced=enhanced.replace('<section class="closing">',wishesSection+'<section class="closing">');
+        const giftModal='<div class="gift-modal" id="giftModal" aria-hidden="true"><div class="gift-backdrop" id="giftBackdrop"></div><div class="gift-card" role="dialog" aria-modal="true" aria-labelledby="giftTitle"><button class="gift-close" id="giftClose" type="button" aria-label="Tutup">×</button><div class="gift-kicker">Tanda Kasih</div><h3 class="gift-title" id="giftTitle">Hadiah</h3><p class="gift-copy">Kehadiran, doa dan restu anda sudah cukup bermakna buat kami. Namun, jika anda berhasrat untuk memberi hadiah, bolehlah menggunakan QR DuitNow di bawah.</p><p class="gift-copy small">Terima kasih atas segala ingatan, doa dan kasih sayang anda buat kami.</p><div class="gift-qr-wrap"><img class="gift-qr" src="assets/26475bda-f0f3-4327-9209-26a66e855c77.jpeg" alt="QR DuitNow hadiah untuk Fazilla dan Aqib"></div></div></div>';
+        const giftScript='<script>(()=>{const b=document.getElementById("giftBtn"),m=document.getElementById("giftModal"),x=document.getElementById("giftClose"),d=document.getElementById("giftBackdrop");if(!b||!m)return;const open=()=>{m.classList.add("show");m.setAttribute("aria-hidden","false");document.body.classList.add("gift-open")};const close=()=>{m.classList.remove("show");m.setAttribute("aria-hidden","true");document.body.classList.remove("gift-open")};b.addEventListener("click",open);if(x)x.addEventListener("click",close);if(d)d.addEventListener("click",close);document.addEventListener("keydown",e=>{if(e.key==="Escape")close()})})();<\/script>';
+        enhanced=enhanced.replace('</body>',giftModal+giftScript+'</body>');
 
         document.open();
         document.write(enhanced);
