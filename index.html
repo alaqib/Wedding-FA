@@ -48,6 +48,7 @@
       #videoIntro video{object-fit:contain}
       #videoIntro:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,rgba(125,35,57,.28),transparent 42%);pointer-events:none}
     }
+    @media(max-width:600px){.intro-control{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(31,5,12,.72)}}
     @media (prefers-reduced-motion:reduce){#videoIntro{display:none!important}}
   </style>
 </head>
@@ -116,29 +117,29 @@
         while(!finished){ await new Promise(resolve=>setTimeout(resolve,120)); }
 
         const confettiCSS=`
-          /* Falling gold confetti — inspired by elegant red wedding pages */
+          /* Falling gold confetti — performance-tuned for mobile */
           .hero>.gold-confetti{position:absolute;inset:-12vh 0 0;overflow:hidden;pointer-events:none;z-index:4;contain:layout paint;}
-          .gold-confetti-piece{position:absolute;left:var(--x);top:-10vh;width:var(--w);height:var(--h);border-radius:1px;background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:0 0 5px rgba(255,218,112,.22);opacity:0;will-change:transform,opacity;transform-origin:center;animation:faGoldFall var(--dur) linear var(--delay) infinite;}
+          .gold-confetti-piece{position:absolute;left:var(--x);top:-10vh;width:var(--w);height:var(--h);border-radius:1px;background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:0 0 4px rgba(255,218,112,.18);opacity:0;will-change:transform,opacity;transform-origin:center;animation:faGoldFall var(--dur) linear var(--delay) infinite;}
           .gold-confetti-piece:nth-child(4n){border-radius:999px;}
-          .gold-confetti-piece:nth-child(5n){box-shadow:0 0 8px rgba(255,235,175,.34);}
-          .gold-confetti-piece:nth-child(7n){filter:brightness(1.14);}
           @keyframes faGoldFall{
-            0%{transform:translate3d(0,-12vh,0) rotateX(0deg) rotateZ(0deg);opacity:0;}
+            0%{transform:translate3d(0,-12vh,0) rotateZ(0deg);opacity:0;}
             7%{opacity:var(--a);}
-            28%{transform:translate3d(var(--d1),32vh,0) rotateX(120deg) rotateZ(135deg);opacity:var(--a);}
-            54%{transform:translate3d(var(--d2),66vh,0) rotateX(250deg) rotateZ(290deg);opacity:var(--a);}
-            80%{transform:translate3d(var(--d3),98vh,0) rotateX(390deg) rotateZ(455deg);opacity:calc(var(--a) * .92);}
-            100%{transform:translate3d(var(--d4),128vh,0) rotateX(520deg) rotateZ(var(--spin));opacity:0;}
+            28%{transform:translate3d(var(--d1),32vh,0) rotateZ(135deg);opacity:var(--a);}
+            54%{transform:translate3d(var(--d2),66vh,0) rotateZ(290deg);opacity:var(--a);}
+            80%{transform:translate3d(var(--d3),98vh,0) rotateZ(455deg);opacity:calc(var(--a) * .92);}
+            100%{transform:translate3d(var(--d4),128vh,0) rotateZ(var(--spin));opacity:0;}
           }
           .wishes-wall{color:#fff8f2;background:radial-gradient(circle at 50% 0,rgba(217,189,128,.12),transparent 32%),linear-gradient(150deg,#310710 0%,#501020 52%,#701a34 100%);overflow:hidden;}
           .wishes-wall:before{content:"";position:absolute;inset:18px;border:1px solid rgba(217,189,128,.10);border-radius:30px;pointer-events:none;}
-          .wishes-frame-wrap{position:relative;z-index:1;width:min(900px,100%);margin:auto;border:1px solid rgba(217,189,128,.24);border-radius:30px;overflow:hidden;background:rgba(255,255,255,.025);box-shadow:0 28px 70px rgba(20,2,7,.22);}
-          .wishes-frame{display:block;width:100%;height:680px;border:0;background:transparent;}
+          .wishes-frame-wrap{position:relative;z-index:1;width:min(900px,100%);margin:auto;border:1px solid rgba(217,189,128,.24);border-radius:30px;overflow:hidden;background:rgba(255,255,255,.025);box-shadow:0 18px 44px rgba(20,2,7,.18);}
+          .wishes-frame{display:block;width:100%;height:420px;border:0;background:transparent;}
           @media(max-width:600px){
-            .gold-confetti-piece:nth-child(n+35){display:none;}
-            .gold-confetti-piece{box-shadow:0 0 4px rgba(255,218,112,.18);}
-            .wishes-frame{height:620px;}
+            .gold-confetti-piece{box-shadow:none;}
+            .wishes-frame{height:390px;}
             .wishes-wall:before{inset:12px;border-radius:24px;}
+            .reveal{filter:none!important;transform:translateY(18px)!important;}
+            .reveal.visible{transform:translateY(0)!important;}
+            .floatbar{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:rgba(255,253,247,.96)!important;}
           }
           @media(prefers-reduced-motion:reduce){.hero>.gold-confetti{display:none!important;}}
         `;
@@ -150,21 +151,27 @@
           ['#fff0cf','#d6ad55'],
           ['#f4d06f','#c78d22']
         ];
+        const isMobile=window.matchMedia('(max-width:600px)').matches;
+        const lowPower=(navigator.hardwareConcurrency&&navigator.hardwareConcurrency<=4)||(navigator.deviceMemory&&navigator.deviceMemory<=4);
+        const confettiCount=lowPower?18:(isMobile?24:42);
         let confetti='';
-        for(let i=0;i<52;i++){
+        for(let i=0;i<confettiCount;i++){
           const t=tones[Math.floor(Math.random()*tones.length)];
           const x=(Math.random()*100).toFixed(2);
           const w=(3.4+Math.random()*4.4).toFixed(1);
           const h=(7+Math.random()*9).toFixed(1);
-          const dur=(7.4+Math.random()*6.2).toFixed(2);
+          const dur=(8.2+Math.random()*6.5).toFixed(2);
           const delay=(-Math.random()*13).toFixed(2);
-          const a=(.48+Math.random()*.42).toFixed(2);
-          const sway=()=>((Math.random()-.5)*74).toFixed(0)+'px';
-          const spin=(520+Math.random()*520).toFixed(0)+'deg';
+          const a=(.44+Math.random()*.38).toFixed(2);
+          const sway=()=>((Math.random()-.5)*62).toFixed(0)+'px';
+          const spin=(480+Math.random()*460).toFixed(0)+'deg';
           confetti+=`<i class="gold-confetti-piece" style="--x:${x}%;--w:${w}px;--h:${h}px;--dur:${dur}s;--delay:${delay}s;--a:${a};--d1:${sway()};--d2:${sway()};--d3:${sway()};--d4:${sway()};--spin:${spin};--c1:${t[0]};--c2:${t[1]}"></i>`;
         }
 
         let enhanced=html.replace('</style>',confettiCSS+'</style>');
+        enhanced=enhanced.replaceAll('assets/7E485076-9F38-4524-95B2-FF7D4D3B3092.png?v=restore2','assets/7E485076-9F38-4524-95B2-FF7D4D3B3092.png?v=fa-logo');
+        enhanced=enhanced.replaceAll('assets/7E485076-9F38-4524-95B2-FF7D4D3B3092.png?v=direct4','assets/7E485076-9F38-4524-95B2-FF7D4D3B3092.png?v=fa-logo');
+        enhanced=enhanced.replace('decoding="sync"','decoding="async"');
         enhanced=enhanced.replace('<section class="hero" id="home">','<section class="hero" id="home"><div class="gold-confetti" aria-hidden="true">'+confetti+'</div>');
         enhanced=enhanced.replace('<div class="family"><h3>Keluarga Pengantin Lelaki</h3><p>Dg Arpiah bte Pg Ahmad<br><span class="amp">&amp;</span><br>Kiffli bin Abd Sani</p></div>','<div class="family"><h3>Keluarga Pengantin Lelaki</h3><p>Dg Arpiah bte Pg Ahmad<br>Mohamed Mohammad Bin Ali<br><span class="amp">&amp;</span><br>Kiffli bin Abd Sani</p></div>');
         enhanced=enhanced.replace('<div class="family"><h3>Keluarga Pengantin Perempuan</h3><p>Mineh Maidi<br><span class="amp">&amp;</span><br>Mohamad Maapus bin Waidi</p></div>','<div class="family"><h3>Keluarga Pengantin Perempuan</h3><p>Mohamad Maapus bin Waidi<br><span class="amp">&amp;</span><br>Mineh Maidi</p></div>');
