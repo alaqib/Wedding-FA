@@ -106,7 +106,19 @@
       if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
         finishIntro();
       }else{
-        video.play().catch(()=>playButton.classList.add('show'));
+        const tryAutoplay=()=>video.play().then(()=>{
+          playButton.classList.remove('show');
+        }).catch(()=>false);
+        const firstTry=await tryAutoplay();
+        if(firstTry===false){
+          const retry=()=>{
+            tryAutoplay().then(result=>{
+              if(result===false) playButton.classList.add('show');
+            });
+          };
+          if(video.readyState>=2) retry();
+          else video.addEventListener('loadeddata',retry,{once:true});
+        }
       }
 
       // Safety fallback in case a mobile browser stalls the video.
