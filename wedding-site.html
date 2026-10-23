@@ -125,6 +125,13 @@
     .rsvp-stage{width:min(740px,100%);margin:0 auto;background:linear-gradient(145deg,rgba(217,189,128,.88),rgba(255,244,224,.44));border-radius:31px;padding:1px;box-shadow:0 30px 72px rgba(20,2,7,.30);overflow:hidden;position:relative;z-index:1}
     .rsvp-frame{display:block;width:100%;height:790px;border:0;border-radius:29px;background:#fffdf9}.rsvp-fallback{margin-top:16px;font:12px/1.5 var(--sans);color:#eadfd9}.rsvp-fallback a{color:var(--gold3);font-weight:700}
 
+
+    .photo-section{background:radial-gradient(circle at 50% 0%,#fffcf5 0,transparent 42%),linear-gradient(180deg,#f5ecdf,#efe3d1);text-align:center}
+    .photo-card{max-width:760px;margin:30px auto 0;padding:46px 24px;border:1px solid rgba(173,135,72,.46);border-radius:28px;background:rgba(255,253,248,.87);box-shadow:0 20px 56px rgba(65,30,30,.075)}
+    .photo-card .photo-icon{font-size:42px;color:var(--gold);margin-bottom:16px}
+    .photo-card p{max-width:500px;margin:0 auto 25px;color:var(--muted);font-size:16px;line-height:1.8}
+    .photo-card small{display:block;margin-top:15px;color:var(--muted);font:12px/1.6 var(--sans)}
+
     .closing{padding:118px 20px 145px;text-align:center;background:radial-gradient(circle at 50% 8%,rgba(255,255,255,.96),transparent 29%),radial-gradient(circle at 50% 100%,rgba(90,23,35,.08),transparent 34%),linear-gradient(#f8f3e9,#eadbc3);position:relative;overflow:hidden}.closing .eyebrow{margin-bottom:18px}.closing p{line-height:1.9;color:var(--muted);max-width:580px;margin:0 auto}
 
     .admin-only{min-height:100vh;background:linear-gradient(180deg,#f8f3e9,#eee1cd);padding:28px 16px}.admin-head{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px;text-align:left}.admin-head h1{margin:0;font-size:clamp(34px,6vw,56px);font-weight:400;color:var(--burgundy)}.admin-stage{background:#fffdf8;border:1px solid var(--line);border-radius:24px;padding:12px}.admin-frame{display:block;width:100%;height:1180px;border:0;border-radius:16px;background:transparent}
@@ -229,6 +236,22 @@
         </div>
       </section>
 
+
+      <section class="content photo-section" id="photographer">
+        <div class="wrap reveal">
+          <div class="eyebrow">Momen Dari Mata Anda</div>
+          <h2 class="section-title">Guest Photographer</h2>
+          <div class="ornament">✦</div>
+          <div class="photo-card">
+            <div class="photo-icon" aria-hidden="true">⌾</div>
+            <h3 class="couple" style="margin-bottom:17px">Jadilah Jurugambar Kami</h3>
+            <p>Abadikan kenangan indah majlis Fazilla &amp; Aqib! Masukkan nama, buka kamera telefon dan ambil gambar. Setiap gambar akan terus dihantar kepada pasangan pengantin.</p>
+            <div class="actions"><a class="btn primary" href="https://wedding-fa-guest-photographer-bv66yy.v2.appdeploy.ai/" target="_blank" rel="noopener">📷 Buka Guest Photographer</a></div>
+            <small>Sila benarkan akses kamera. Gambar tidak dipaparkan secara umum.</small>
+          </div>
+        </div>
+      </section>
+
       <section class="closing">
         <div class="wrap reveal">
           <img src="assets/fa-logo.webp?v=restore2" alt="Logo Fazilla dan Aqib" class="logo logo--closing">
@@ -240,7 +263,7 @@
     </main>
 
     <audio id="bgMusic" preload="metadata" loop playsinline><source src="assets/Sedetik Lebih_16_265.mp3" type="audio/mpeg"></audio>
-    <nav class="floatbar" id="floatbar" aria-label="Menu pantas"><a href="#home" aria-label="Utama">⌂</a><a href="#majlis" aria-label="Majlis">♡</a><a href="#rsvp" aria-label="RSVP">✓</a><a href="https://www.google.com/maps/search/?api=1&query=Dewan+Kilimu+Ranau" target="_blank" rel="noopener" aria-label="Lokasi">⌖</a><button id="musicBtn" class="music-btn" aria-label="Main atau hentikan muzik">♪</button><button id="shareMini" aria-label="Kongsi">↗</button></nav>
+    <nav class="floatbar" id="floatbar" aria-label="Menu pantas"><a href="#home" aria-label="Utama">⌂</a><a href="#majlis" aria-label="Majlis">♡</a><a href="#rsvp" aria-label="RSVP">✓</a><a href="https://wedding-fa-guest-photographer-bv66yy.v2.appdeploy.ai/" target="_blank" rel="noopener" aria-label="Guest Photographer">📷</a><a href="https://www.google.com/maps/search/?api=1&query=Dewan+Kilimu+Ranau" target="_blank" rel="noopener" aria-label="Lokasi">⌖</a><button id="musicBtn" class="music-btn" aria-label="Main atau hentikan muzik">♪</button><button id="shareMini" aria-label="Kongsi">↗</button></nav>
     <div class="toast" id="toast">Pautan jemputan disalin ✓</div>
   </div>
 
